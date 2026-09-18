@@ -1,362 +1,983 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Digital Atelier — Prendas desarrolladas en 3D.">
-<title>CARLOS GLEZDEL / ATELIER — Prendas en 3D</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#0b0b0b;
-  --panel:#151515;
-  --line:#2a2a2a;
-  --text:#f3f2ed;
-  --muted:#8d8d8d;
-  --olive:#78866f;
-  --olive-light:#9ba891;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;background:var(--bg)}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,Arial,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-button{font:inherit}
-::selection{background:var(--olive);color:#fff}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-/* ---------- HEADER ---------- */
-.header{
-  height:66px;position:sticky;top:0;z-index:50;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 32px;background:rgba(11,11,11,.94);
-  border-bottom:1px solid var(--line);backdrop-filter:blur(12px)
-}
-.brand{font:500 12px/1 "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
-.nav{display:flex;align-items:center;gap:24px;font:500 10px/1 "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
-.nav a{height:30px;display:flex;align-items:center;padding:0 2px;color:#deddd8;opacity:.82;transition:.2s}
-.nav a:hover{opacity:1}
-.nav a.active{background:var(--olive);padding:0 13px;opacity:1}
+  <title>CARLOS GLEZDEL / ATELIER</title>
 
-/* ---------- HERO ---------- */
-.hero{padding:76px 33px 72px;max-width:1180px}
-.eyebrow{font:400 10px/1.4 "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:#aaa}
-.hero h1{margin:45px 0 22px;font-size:clamp(64px,8.8vw,116px);line-height:.83;letter-spacing:-.075em;font-weight:600;max-width:850px}
-.hero h1 .italic{font-weight:500}
-.hero-copy{margin:0;max-width:570px;color:#999;font-size:15px;line-height:1.75}
-.hero-meta{margin-top:27px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.meta-pill{border:1px solid #3a3a3a;padding:8px 11px;font:400 9px/1 "DM Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:#bcbab5}
-
-/* ---------- ATELIER ---------- */
-.atelier{padding:0 33px 90px}
-.section-top{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin:0 0 27px;padding-top:5px}
-.section-title{font:500 11px/1 "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:#aaa}
-.section-count{font:400 9px/1 "DM Mono",monospace;letter-spacing:.08em;color:#686868;text-transform:uppercase}
-.filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:24px}
-.filter{cursor:pointer;border:1px solid #333;background:transparent;color:#8f8f8f;padding:8px 11px;font:400 9px/1 "DM Mono",monospace;text-transform:uppercase;letter-spacing:.05em;transition:.2s}
-.filter:hover,.filter.active{background:var(--olive);border-color:var(--olive);color:#fff}
-
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 16px}
-.card{min-width:0;cursor:pointer;background:#121212;border:1px solid #292929;transition:transform .3s ease,border-color .3s ease;overflow:hidden}
-.card:hover{transform:translateY(-4px);border-color:#4a4a4a}
-.media{position:relative;aspect-ratio:1 / 1.28;background:#151515;overflow:hidden}
-.media img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .55s cubic-bezier(.2,.7,.2,1);user-select:none;-webkit-user-drag:none}
-.card:hover .media img{transform:scale(1.025)}
-.view-number{position:absolute;top:11px;left:11px;padding:5px 7px;background:rgba(11,11,11,.72);font:400 8px/1 "DM Mono",monospace;letter-spacing:.06em;color:#ddd;border:1px solid rgba(255,255,255,.12)}
-.open{position:absolute;right:11px;bottom:11px;width:30px;height:30px;border:1px solid rgba(255,255,255,.38);background:rgba(11,11,11,.65);display:grid;place-items:center;font-size:13px;opacity:0;transform:translateY(5px);transition:.25s}
-.card:hover .open{opacity:1;transform:translateY(0)}
-.card-info{min-height:63px;padding:13px 12px 12px;background:#151515;border-top:1px solid #262626;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-.card-title{font:500 10px/1.4 "DM Mono",monospace;letter-spacing:.04em;text-transform:uppercase;color:#deddd8}
-.card-type{margin-top:5px;font:400 8px/1.2 "DM Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:#6d6d6d}
-.card-index{font:400 8px/1 "DM Mono",monospace;color:#686868;white-space:nowrap}
-
-/* ---------- INFO BAND ---------- */
-.band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:45px 33px 48px;display:grid;grid-template-columns:1fr 1fr;gap:70px;background:#0d0d0d}
-.band h2{font-size:clamp(36px,5vw,66px);line-height:.92;letter-spacing:-.06em;margin:0;font-weight:600}
-.band p{margin:0;max-width:520px;color:#898989;font-size:13px;line-height:1.8}
-
-/* ---------- FOOTER ---------- */
-.footer{padding:24px 33px;display:flex;justify-content:space-between;gap:20px;color:#656565;font:400 8px/1.5 "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
-
-/* ---------- VIEWER ---------- */
-.modal{position:fixed;inset:0;z-index:100;background:#0b0b0b;display:none}
-.modal.show{display:block}
-.close{position:absolute;right:23px;top:18px;z-index:10;width:38px;height:38px;border:1px solid #3a3a3a;background:#101010;color:#eee;cursor:pointer;font-size:21px;line-height:1}
-.close:hover{background:var(--olive);border-color:var(--olive)}
-.viewer{height:100%;display:grid;grid-template-columns:minmax(0,1fr) 300px}
-.viewer-stage{position:relative;display:flex;align-items:center;justify-content:center;min-width:0;overflow:hidden;background:#0b0b0b}
-.viewer-image{max-width:86%;max-height:83vh;width:auto;height:auto;object-fit:contain;user-select:none;-webkit-user-drag:none;cursor:grab;transition:opacity .14s ease}
-.viewer-image.dragging{cursor:grabbing}
-.viewer-counter{position:absolute;top:22px;left:25px;font:400 9px/1 "DM Mono",monospace;letter-spacing:.07em;color:#777;text-transform:uppercase}
-.arrow{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border:1px solid #383838;background:rgba(11,11,11,.8);color:#ddd;cursor:pointer;font-size:17px}
-.arrow:hover{background:var(--olive);border-color:var(--olive)}
-.arrow.left{left:22px}.arrow.right{right:22px}
-.hint{position:absolute;bottom:19px;left:50%;transform:translateX(-50%);font:400 8px/1 "DM Mono",monospace;letter-spacing:.07em;text-transform:uppercase;color:#656565;white-space:nowrap}
-.viewer-info{border-left:1px solid var(--line);padding:78px 25px 24px;display:flex;flex-direction:column;background:#0f0f0f}
-.viewer-num{font:400 9px/1 "DM Mono",monospace;color:#686868;letter-spacing:.06em}
-.viewer-info h2{margin:14px 0 12px;font-size:31px;line-height:.95;letter-spacing:-.045em;font-weight:600}
-.viewer-info p{margin:0;color:#858585;font-size:11px;line-height:1.7}
-.label{margin-top:28px;font:400 8px/1 "DM Mono",monospace;letter-spacing:.07em;text-transform:uppercase;color:#626262}
-.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:9px}
-.thumb{aspect-ratio:1/1.2;overflow:hidden;border:1px solid #292929;cursor:pointer;background:#151515}
-.thumb.active{border-color:#eee}.thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.viewer-actions{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.viewer-actions button{border:1px solid #383838;background:transparent;color:#aaa;padding:11px 7px;cursor:pointer;font:400 8px/1 "DM Mono",monospace;letter-spacing:.05em;text-transform:uppercase}
-.viewer-actions button:hover{background:var(--olive);border-color:var(--olive);color:#fff}
-
-/* ---------- RESPONSIVE ---------- */
-@media(max-width:900px){
- .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
- .band{grid-template-columns:1fr;gap:25px}
- .viewer{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}
- .viewer-info{border-left:0;border-top:1px solid var(--line);padding:17px 20px 18px;max-height:33vh;overflow:auto}
- .viewer-info h2{font-size:25px;margin:7px 0}.viewer-info p{font-size:10px}.label{margin-top:14px}.viewer-actions{margin-top:13px}
-}
-@media(max-width:600px){
- .header{height:62px;padding:0 18px}.brand{font-size:9px}.nav{gap:11px;font-size:8px}.nav a:nth-child(n+4){display:none}.nav a.active{padding:0 9px}
- .hero{padding:58px 20px 65px}.hero h1{margin-top:36px;font-size:64px;line-height:.86}.hero-copy{font-size:13px}.atelier{padding:0 20px 65px}
- .section-top{margin-bottom:20px}.grid{grid-template-columns:1fr;gap:12px}.media{aspect-ratio:1/1.18}.card-info{min-height:58px}
- .band{padding:38px 20px 42px}.footer{padding:20px;display:block}.footer span{display:block;margin:4px 0}
- .viewer-image{max-width:90%;max-height:61vh}.arrow{width:36px;height:36px}.arrow.left{left:10px}.arrow.right{right:10px}.hint{font-size:7px;bottom:9px}.viewer-info{max-height:36vh}
-}
-</style>
-</head>
-<body><header class="header">
-  <a
-    class="brand"
-    href="https://anagonzalezdelgado.framer.wiki/"
-    target="_top"
+  <meta
+    name="description"
+    content="Digital Atelier — Carlos Glezdel"
   >
-    CARLOS GLEZDEL&nbsp; / &nbsp;ATELIER
-  </a>
 
-  <nav class="nav">
+  <style>
+    /* =========================================================
+       VARIABLES
+    ========================================================= */
+
+    :root {
+      --paper: #EDE9E2;
+      --ink: #101010;
+      --deep-black: #0C0C0C;
+      --warm-white: #F5F2EC;
+
+      --olive: #78866F;
+      --light-olive: #9BAA91;
+
+      --beige: #DED8CF;
+      --grey: #C9C4BB;
+    }
+
+
+    /* =========================================================
+       RESET
+    ========================================================= */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--deep-black);
+    }
+
+    body {
+      background: var(--deep-black);
+      color: var(--warm-white);
+
+      font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      min-height: 100vh;
+
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .header {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 28px 42px;
+
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background: rgba(12, 12, 12, 0.94);
+
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      border-bottom: 1px solid rgba(237, 233, 226, 0.08);
+    }
+
+
+    /* Marca */
+
+    .brand {
+      font-family: "DM Mono", monospace;
+
+      font-size: 12px;
+      line-height: 1;
+
+      letter-spacing: 0.04em;
+
+      white-space: nowrap;
+
+      transition: opacity 0.25s ease;
+    }
+
+    .brand:hover {
+      opacity: 0.65;
+    }
+
+
+    /* Navegación */
+
+    .nav {
+      display: flex;
+      align-items: center;
+
+      gap: 28px;
+    }
+
+    .nav a {
+      position: relative;
+
+      font-family: "DM Mono", monospace;
+
+      font-size: 10px;
+
+      letter-spacing: 0.08em;
+
+      color: var(--warm-white);
+
+      opacity: 0.75;
+
+      transition:
+        color 0.25s ease,
+        opacity 0.25s ease;
+    }
+
+    .nav a:hover {
+      opacity: 1;
+    }
+
+    .nav a.active {
+      color: var(--olive);
+      opacity: 1;
+    }
+
+    .nav a.active::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      right: 0;
+
+      bottom: -7px;
+
+      height: 1px;
+
+      background: var(--olive);
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .atelier {
+      width: 100%;
+      max-width: 1500px;
+
+      margin: 0 auto;
+
+      padding: 110px 42px 100px;
+    }
+
+    .eyebrow {
+      font-family: "DM Mono", monospace;
+
+      font-size: 10px;
+
+      letter-spacing: 0.12em;
+
+      color: var(--light-olive);
+
+      margin-bottom: 22px;
+    }
+
+    .title {
+      font-size: clamp(64px, 9vw, 150px);
+
+      font-weight: 500;
+
+      line-height: 0.9;
+
+      letter-spacing: -0.055em;
+
+      margin-bottom: 55px;
+    }
+
+    .title em {
+      font-family: "Playfair Display", Georgia, serif;
+
+      font-style: italic;
+
+      font-weight: 400;
+    }
+
+
+    /* =========================================================
+       INTRO
+    ========================================================= */
+
+    .intro {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: flex-end;
+
+      gap: 50px;
+
+      margin-bottom: 80px;
+    }
+
+    .intro-text {
+      max-width: 570px;
+
+      color: rgba(245, 242, 236, 0.72);
+
+      font-size: 15px;
+
+      line-height: 1.75;
+    }
+
+    .intro-meta {
+      font-family: "DM Mono", monospace;
+
+      font-size: 10px;
+
+      line-height: 1.8;
+
+      color: rgba(245, 242, 236, 0.45);
+
+      text-align: right;
+
+      white-space: nowrap;
+    }
+
+
+    /* =========================================================
+       GRID
+    ========================================================= */
+
+    .collection {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 20px;
+    }
+
+
+    /* =========================================================
+       GARMENT CARD
+    ========================================================= */
+
+    .garment {
+      position: relative;
+
+      overflow: hidden;
+
+      background: var(--paper);
+
+      min-width: 0;
+    }
+
+    .garment-image {
+      position: relative;
+
+      width: 100%;
+
+      aspect-ratio: 4 / 5;
+
+      overflow: hidden;
+
+      background: var(--paper);
+    }
+
+    .garment-image img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      transition:
+        transform 0.7s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .garment:hover .garment-image img {
+      transform: scale(1.035);
+    }
+
+
+    /* =========================================================
+       CARD INFORMATION
+    ========================================================= */
+
+    .garment-info {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: flex-start;
+
+      gap: 20px;
+
+      padding: 19px 20px 21px;
+
+      background: var(--deep-black);
+    }
+
+    .garment-name {
+      font-size: 13px;
+
+      font-weight: 500;
+
+      letter-spacing: -0.01em;
+    }
+
+    .garment-code {
+      margin-top: 6px;
+
+      font-family: "DM Mono", monospace;
+
+      font-size: 9px;
+
+      letter-spacing: 0.08em;
+
+      color: rgba(245, 242, 236, 0.42);
+    }
+
+    .garment-count {
+      font-family: "DM Mono", monospace;
+
+      font-size: 9px;
+
+      color: var(--olive);
+
+      white-space: nowrap;
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .footer {
+      max-width: 1500px;
+
+      margin: 0 auto;
+
+      padding: 20px 42px 45px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      font-family: "DM Mono", monospace;
+
+      font-size: 9px;
+
+      letter-spacing: 0.05em;
+
+      color: rgba(245, 242, 236, 0.35);
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 900px) {
+
+      .header {
+        padding: 24px 25px;
+      }
+
+      .nav {
+        gap: 17px;
+      }
+
+      .nav a {
+        font-size: 9px;
+      }
+
+      .atelier {
+        padding:
+          75px
+          25px
+          80px;
+      }
+
+      .intro {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        margin-bottom: 55px;
+      }
+
+      .intro-meta {
+        text-align: left;
+      }
+
+      .collection {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+
+        gap: 15px;
+      }
+
+      .footer {
+        padding-left: 25px;
+        padding-right: 25px;
+      }
+    }
+
+
+    @media (max-width: 600px) {
+
+      .header {
+        position: relative;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+      }
+
+      .nav {
+        width: 100%;
+
+        justify-content: space-between;
+
+        gap: 10px;
+      }
+
+      .nav a {
+        font-size: 8px;
+      }
+
+      .atelier {
+        padding-top: 65px;
+      }
+
+      .title {
+        font-size: 62px;
+
+        margin-bottom: 45px;
+      }
+
+      .collection {
+        grid-template-columns: 1fr;
+      }
+
+      .garment-image {
+        aspect-ratio: 4 / 5;
+      }
+
+      .footer {
+        flex-direction: column;
+
+        gap: 10px;
+      }
+    }
+  </style>
+
+
+  <!-- FUENTES -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Manrope:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
+    rel="stylesheet"
+  >
+
+</head>
+
+
+<body id="top">
+
+
+  <!-- =======================================================
+       HEADER
+  ======================================================== -->
+
+  <header class="header">
+
+    <!--
+      IMPORTANTE:
+      target="_top" hace que el enlace salga del iframe
+      y navegue por la página principal de Framer.
+    -->
 
     <a
-      href="https://anagonzalezdelgado.framer.wiki/"
+      class="brand"
+      href="https://anagonzálezdelgado.framer.wiki"
       target="_top"
+      rel="noopener"
     >
-      WORK
+      CARLOS GLEZDEL&nbsp; / &nbsp;ATELIER
     </a>
 
-    <a
-      class="active"
-      href=""
-      target="_top"
+
+    <nav
+      class="nav"
+      aria-label="Navegación"
     >
-      ATELIER
-    </a>
 
-    <a
-      href="https://anagonzalezdelgado.framer.wiki/motion"
-      target="_top"
-    >
-      MOTION
-    </a>
+      <a
+        href="https://anagonzálezdelgado.framer.wiki/work"
+        target="_top"
+        rel="noopener"
+      >
+        WORK
+      </a>
 
-    <a
-      href="https://anagonzalezdelgado.framer.wiki/about"
-      target="_top"
-    >
-      ABOUT
-    </a>
 
-    <a
-      href="https://anagonzalezdelgado.framer.wiki/contact"
-      target="_top"
-    >
-      CONTACT
-    </a>
+      <a
+        class="active"
+        href=""
+        target="_top"
+        rel="noopener"
+      >
+        ATELIER
+      </a>
 
-  </nav>
-</header>
 
-<main id="top">
-  <section class="hero">
-    <div class="eyebrow">03 / DIGITAL ATELIER</div>
-    <h1>Prendas en 3D<span class="italic">.</span></h1>
-    <p class="hero-copy">Nueve prendas y un espacio para explorar construcción, textura y movimiento desde cualquier ángulo.</p>
-    <div class="hero-meta">
-      <span class="meta-pill">09 prendas</span>
-      <span class="meta-pill">36 vistas</span>
-      <span class="meta-pill">3D garment development</span>
+      <a
+        href="https://anagonzálezdelgado.framer.wiki/motion"
+        target="_top"
+        rel="noopener"
+      >
+        MOTION
+      </a>
+
+
+      <a
+        href="https://anagonzálezdelgado.framer.wiki/about"
+        target="_top"
+        rel="noopener"
+      >
+        ABOUT
+      </a>
+
+
+      <a
+        href="https://anagonzálezdelgado.framer.wiki/contact"
+        target="_top"
+        rel="noopener"
+      >
+        CONTACT
+      </a>
+
+    </nav>
+
+  </header>
+
+
+
+  <!-- =======================================================
+       ATELIER
+  ======================================================== -->
+
+  <main
+    id="atelier"
+    class="atelier"
+  >
+
+
+    <div class="eyebrow">
+      DIGITAL ATELIER / 2026
     </div>
-  </section>
 
-  <section class="atelier" id="atelier">
-    <div class="section-top">
-      <div class="section-title">Digital Atelier / 3D Garments</div>
-      <div class="section-count" id="count">09 / 09</div>
-    </div>
 
-    <div class="filters" id="filters">
-      <button class="filter active" data-filter="all">Todas</button>
-      <button class="filter" data-filter="denim-cafe">Denim café</button>
-      <button class="filter" data-filter="vermu">Vermú</button>
-      <button class="filter" data-filter="vino">Vino</button>
-      <button class="filter" data-filter="champan">Champán</button>
-    </div>
+    <h1 class="title">
+      Prendas<br>
+      en <em>3D.</em>
+    </h1>
 
-    <div class="grid" id="grid"></div>
-  </section>
 
-  <section class="band" id="work">
-    <h2>Digital development<br>as part of the <span style="font-weight:400">atelier.</span></h2>
-    <p>Una selección de prendas desarrolladas digitalmente para estudiar silueta, proporción, material, detalle y presentación. Selecciona cualquier pieza para abrir el visor y recorrer sus cuatro vistas.</p>
-  </section>
+    <section class="intro">
 
-  <!-- Estas anclas permiten que el menú siga teniendo estructura de portfolio.
-       Puedes sustituirlas por las URLs reales de tus páginas de Framer cuando las tengas. -->
-  <section id="motion" style="height:1px"></section>
-  <section id="about" style="height:1px"></section>
-  <section id="contact" style="height:1px"></section>
-</main>
+      <p class="intro-text">
+        Una exploración digital de volumen, silueta y
+        materialidad. Una colección de prendas desarrolladas
+        mediante modelado 3D y experimentación visual.
+      </p>
 
-<footer class="footer">
-  <span>CARLOS GLEZDEL / DIGITAL ATELIER</span>
-  <span>3D GARMENTS / 2026</span>
-  <span>GITHUB PAGES</span>
-</footer>
 
-<div class="modal" id="modal" aria-hidden="true">
-  <button class="close" id="close" aria-label="Cerrar">×</button>
-  <div class="viewer">
-    <div class="viewer-stage" id="stage">
-      <div class="viewer-counter" id="counter">VIEW 01 / 04</div>
-      <button class="arrow left" id="prev" aria-label="Vista anterior">←</button>
-      <img class="viewer-image" id="viewerImage" alt="">
-      <button class="arrow right" id="next" aria-label="Vista siguiente">→</button>
-      <div class="hint">Arrastra · ← → · desliza</div>
-    </div>
-    <aside class="viewer-info">
-      <div class="viewer-num" id="viewerNum">01 / 09</div>
-      <h2 id="viewerTitle"></h2>
-      <p id="viewerDesc"></p>
-      <div class="label">Vistas</div>
-      <div class="thumbs" id="thumbs"></div>
-      <div class="viewer-actions">
-        <button id="auto">Auto rotate</button>
-        <button id="details">Next view</button>
+      <div class="intro-meta">
+        09 PRENDAS<br>
+        36 RENDERS<br>
+        DIGITAL COLLECTION
       </div>
-    </aside>
-  </div>
-</div>
 
-<script>
-const garments = [
- {id:'falda-denim-cafe',title:'Falda denim café',desc:'Desarrollo 3D · estudio de silueta · volumen y proporción',cat:['denim-cafe'],views:['assets/falda-denim-cafe-1.webp','assets/falda-denim-cafe-2.webp','assets/falda-denim-cafe-3.webp','assets/falda-denim-cafe-4.webp']},
- {id:'chaqueta-denim-vermu',title:'Chaqueta denim vermú',desc:'Desarrollo 3D · pieza exterior · construcción y proporción',cat:['vermu'],views:['assets/chaqueta-denim-vermu-1.webp','assets/chaqueta-denim-vermu-2.webp','assets/chaqueta-denim-vermu-3.webp','assets/chaqueta-denim-vermu-4.webp']},
- {id:'conjunto-denim-cafe',title:'Conjunto denim café',desc:'Desarrollo 3D · conjunto · construcción modular',cat:['denim-cafe'],views:['assets/conjunto-denim-cafe-1.webp','assets/conjunto-denim-cafe-2.webp','assets/conjunto-denim-cafe-3.webp','assets/conjunto-denim-cafe-4.webp']},
- {id:'conjunto-denim-vermu',title:'Conjunto denim vermú',desc:'Desarrollo 3D · look completo · piezas coordinadas',cat:['vermu'],views:['assets/conjunto-denim-vermu-1.webp','assets/conjunto-denim-vermu-2.webp','assets/conjunto-denim-vermu-3.webp','assets/conjunto-denim-vermu-4.webp']},
- {id:'falda-denim-champan',title:'Falda denim champán',desc:'Desarrollo 3D · textura · estudio de superficie',cat:['champan'],views:['assets/falda-denim-champan-1.webp','assets/falda-denim-champan-2.webp','assets/falda-denim-champan-3.webp','assets/falda-denim-champan-4.webp']},
- {id:'pantalon-denim',title:'Pantalón denim',desc:'Desarrollo 3D · patronaje · ajuste y volumen',cat:['denim-cafe'],views:['assets/pantalon-denim-1.webp','assets/pantalon-denim-2.webp','assets/pantalon-denim-3.webp','assets/pantalon-denim-4.webp']},
- {id:'top-denim-vino',title:'Top denim vino',desc:'Desarrollo 3D · cuerpo · cuello y detalle',cat:['vino'],views:['assets/top-denim-vino-1.webp','assets/top-denim-vino-2.webp','assets/top-denim-vino-3.webp','assets/top-denim-vino-4.webp']},
- {id:'camisa-denim-cafe',title:'Camisa denim café',desc:'Desarrollo 3D · camisa · detalle constructivo',cat:['denim-cafe'],views:['assets/camisa-denim-cafe-1.webp','assets/camisa-denim-cafe-2.webp','assets/camisa-denim-cafe-3.webp','assets/camisa-denim-cafe-4.webp']},
- {id:'vestido-denim-vermu',title:'Vestido denim vermú',desc:'Desarrollo 3D · construcción de cuerpo · caída',cat:['vermu'],views:['assets/vestido-denim-vermu-1.webp','assets/vestido-denim-vermu-2.webp','assets/vestido-denim-vermu-3.webp','assets/vestido-denim-vermu-4.webp']}
-];
+    </section>
 
-const grid=document.getElementById('grid');
-const count=document.getElementById('count');
-const modal=document.getElementById('modal');
-const viewerImage=document.getElementById('viewerImage');
-const viewerTitle=document.getElementById('viewerTitle');
-const viewerDesc=document.getElementById('viewerDesc');
-const viewerNum=document.getElementById('viewerNum');
-const counter=document.getElementById('counter');
-const thumbs=document.getElementById('thumbs');
-let current=null,view=0,timer=null,startX=0,dragging=false;
 
-function render(filter='all'){
-  const list=garments.filter(g=>filter==='all'||g.cat.includes(filter));
-  count.textContent=String(list.length).padStart(2,'0')+' / 09';
-  grid.innerHTML='';
-  list.forEach(g=>{
-    const originalIndex=garments.indexOf(g)+1;
-    const card=document.createElement('article');
-    card.className='card';
-    card.innerHTML=`
-      <div class="media">
-        <img loading="lazy" src="${g.views[0]}" alt="${g.title}">
-        <span class="view-number">${String(originalIndex).padStart(2,'0')}</span>
-        <span class="open">↗</span>
-      </div>
-      <div class="card-info">
-        <div>
-          <div class="card-title">${String(originalIndex).padStart(2,'0')} / ${g.title}</div>
-          <div class="card-type">3D GARMENT</div>
+
+    <!-- =====================================================
+         COLECCIÓN
+    ====================================================== -->
+
+    <section class="collection">
+
+
+      <!-- PRENDA 01 -->
+
+      <article class="garment">
+
+        <div class="garment-image">
+
+          <img
+            src="assets/prenda-01-1.png"
+            alt="Prenda 01 — vista digital"
+            loading="eager"
+          >
+
         </div>
-        <span class="card-index">04 VIEWS</span>
-      </div>`;
-    card.addEventListener('click',()=>openViewer(g));
-    grid.appendChild(card);
-  });
-}
 
-document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{
- document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));
- btn.classList.add('active');
- render(btn.dataset.filter);
-}));
+        <div class="garment-info">
 
-function openViewer(g){
- current=g;view=0;
- modal.classList.add('show');
- modal.setAttribute('aria-hidden','false');
- document.body.style.overflow='hidden';
- updateViewer();
-}
-function updateViewer(){
- if(!current)return;
- viewerImage.style.opacity='0';
- setTimeout(()=>{
-   viewerImage.src=current.views[view];
-   viewerImage.alt=current.title+' — vista '+(view+1);
-   viewerImage.onload=()=>viewerImage.style.opacity='1';
- },70);
- const idx=garments.indexOf(current)+1;
- viewerNum.textContent=String(idx).padStart(2,'0')+' / 09';
- viewerTitle.textContent=current.title;
- viewerDesc.textContent=current.desc;
- counter.textContent='VIEW '+String(view+1).padStart(2,'0')+' / 04';
- thumbs.innerHTML='';
- current.views.forEach((src,i)=>{
-   const t=document.createElement('button');
-   t.className='thumb'+(i===view?' active':'');
-   t.innerHTML=`<img src="${src}" alt="Vista ${i+1}">`;
-   t.addEventListener('click',()=>{view=i;updateViewer()});
-   thumbs.appendChild(t);
- });
-}
-function next(){if(!current)return;view=(view+1)%current.views.length;updateViewer()}
-function prev(){if(!current)return;view=(view-1+current.views.length)%current.views.length;updateViewer()}
-function closeViewer(){modal.classList.remove('show');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';stopAuto()}
-function startAuto(){stopAuto();timer=setInterval(next,1300);document.getElementById('auto').textContent='Stop rotate'}
-function stopAuto(){if(timer)clearInterval(timer);timer=null;document.getElementById('auto').textContent='Auto rotate'}
+          <div>
+            <div class="garment-name">
+              Prenda 01
+            </div>
 
-document.getElementById('next').addEventListener('click',next);
-document.getElementById('prev').addEventListener('click',prev);
-document.getElementById('details').addEventListener('click',next);
-document.getElementById('auto').addEventListener('click',()=>timer?stopAuto():startAuto());
-document.getElementById('close').addEventListener('click',closeViewer);
-modal.addEventListener('click',e=>{if(e.target===modal)closeViewer()});
-document.addEventListener('keydown',e=>{
- if(!modal.classList.contains('show'))return;
- if(e.key==='ArrowRight')next();
- if(e.key==='ArrowLeft')prev();
- if(e.key==='Escape')closeViewer();
-});
+            <div class="garment-code">
+              AT-001
+            </div>
+          </div>
 
-const stage=document.getElementById('stage');
-stage.addEventListener('pointerdown',e=>{if(e.target.closest('button'))return;dragging=true;startX=e.clientX;viewerImage.classList.add('dragging');stage.setPointerCapture?.(e.pointerId)});
-stage.addEventListener('pointermove',e=>{
- if(!dragging)return;
- const dx=e.clientX-startX;
- if(Math.abs(dx)>55){dx<0?next():prev();startX=e.clientX;}
-});
-stage.addEventListener('pointerup',()=>{dragging=false;viewerImage.classList.remove('dragging')});
-stage.addEventListener('pointercancel',()=>{dragging=false;viewerImage.classList.remove('dragging')});
+          <div class="garment-count">
+            01 / 04
+          </div>
 
-render();
-</script>
+        </div>
+
+      </article>
+
+
+
+      <!-- PRENDA 02 -->
+
+      <article class="garment">
+
+        <div class="garment-image">
+
+          <img
+            src="assets/prenda-02-1.png"
+            alt="Prenda 02 — vista digital"
+            loading="lazy"
+          >
+
+        </div>
+
+        <div class="garment-info">
+
+          <div>
+            <div class="garment-name">
+              Prenda 02
+            </div>
+
+            <div class="garment-code">
+              AT-002
+            </div>
+          </div>
+
+          <div class="garment-count">
+            02 / 04
+          </div>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- PRENDA 03 -->
+
+      <article class="garment">
+
+        <div class="garment-image">
+
+          <img
+            src="assets/prenda-03-1.png"
+            alt="Prenda 03 — vista digital"
+            loading="lazy"
+          >
+
+        </div>
+
+        <div class="garment-info">
+
+          <div>
+            <div class="garment-name">
+              Prenda 03
+            </div>
+
+            <div class="garment-code">
+              AT-003
+            </div>
+          </div>
+
+          <div class="garment-count">
+            03 / 04
+          </div>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- PRENDA 04 -->
+
+      <article class="garment">
+
+        <div class="garment-image">
+
+          <img
+            src="assets/prenda-04-1.png"
+            alt="Prenda 04 — vista digital"
+            loading="lazy"
+          >
+
+        </div>
+
+        <div class="garment-info">
+
+          <div>
+            <div class="garment-name">
+              Prenda 04
+            </div>
+
+            <div class="garment-code">
+              AT-004
+            </div>
+          </div>
+
+          <div class="garment-count">
+            04 / 04
+          </div>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- PRENDA 05 -->
+
+      <article class="garment">
+
+        <div class="garment-image">
+
+          <img
+            src="assets/prenda-05-1.png"
+            alt="Prenda 05 — vista digital"
+            loading="lazy"
+          >
+
+        </div>
+
+        <div class="garment-info">
+
+          <div>
+            <div class="garment-name">
+              Prenda 05
+            </div>
+
+            <div class="garment-code">
+              AT-005
+            </div>
+          </div>
+
+          <div class="garment-count">
+            01 / 04
+          </div>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- PRENDA 06 -->
+
+      <article class="garment">
+
+        <div class="garment-image">
+
+          <img
+            src="assets/prenda-06-1.png"
+            alt="Prenda 06 — vista digital"
+            loading="lazy"
+          >
+
+        </div>
+
+        <div class="garment-info">
+
+          <div>
+            <div class="garment-name">
+              Prenda 06
+            </div>
+
+            <div class="garment-code">
+              AT-006
+            </div>
+          </div>
+
+          <div class="garment-count">
+            02 / 04
+          </div>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- PRENDA 07 -->
+
+      <article class="garment">
+
+        <div class="garment-image">
+
+          <img
+            src="assets/prenda-07-1.png"
+            alt="Prenda 07 — vista digital"
+            loading="lazy"
+          >
+
+        </div>
+
+        <div class="garment-info">
+
+          <div>
+            <div class="garment-name">
+              Prenda 07
+            </div>
+
+            <div class="garment-code">
+              AT-007
+            </div>
+          </div>
+
+          <div class="garment-count">
+            03 / 04
+          </div>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- PRENDA 08 -->
+
+      <article class="garment">
+
+        <div class="garment-image">
+
+          <img
+            src="assets/prenda-08-1.png"
+            alt="Prenda 08 — vista digital"
+            loading="lazy"
+          >
+
+        </div>
+
+        <div class="garment-info">
+
+          <div>
+            <div class="garment-name">
+              Prenda 08
+            </div>
+
+            <div class="garment-code">
+              AT-008
+            </div>
+          </div>
+
+          <div class="garment-count">
+            04 / 04
+          </div>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- PRENDA 09 -->
+
+      <article class="garment">
+
+        <div class="garment-image">
+
+          <img
+            src="assets/prenda-09-1.png"
+            alt="Prenda 09 — vista digital"
+            loading="lazy"
+          >
+
+        </div>
+
+        <div class="garment-info">
+
+          <div>
+            <div class="garment-name">
+              Prenda 09
+            </div>
+
+            <div class="garment-code">
+              AT-009
+            </div>
+          </div>
+
+          <div class="garment-count">
+            01 / 04
+          </div>
+
+        </div>
+
+      </article>
+
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =======================================================
+       FOOTER
+  ======================================================== -->
+
+  <footer class="footer">
+
+    <span>
+      CARLOS GLEZDEL
+    </span>
+
+    <span>
+      DIGITAL ATELIER / 2026
+    </span>
+
+  </footer>
+
+
 </body>
 </html>
