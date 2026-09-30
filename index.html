@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Digital Atelier — Prendas desarrolladas en 3D.">
-<title>CARLOS GLEZDEL / ATELIER — Prendas en 3D</title>
+<meta name="description" content="CLO 3D — Prendas desarrolladas en 3D.">
+<title>CARLOS GLEZDEL / CLO 3D — Prendas en 3D</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -113,7 +114,7 @@ button{font:inherit}
  .viewer-info h2{font-size:25px;margin:7px 0}.viewer-info p{font-size:10px}.label{margin-top:14px}.viewer-actions{margin-top:13px}
 }
 @media(max-width:600px){
- .header{height:62px;padding:0 18px}.brand{font-size:9px}.nav{gap:11px;font-size:8px}.nav a:nth-child(n+4){display:none}.nav a.active{padding:0 9px}
+ .header{height:auto;padding:16px 18px 14px;flex-direction:column;justify-content:center;gap:14px}.brand{font-size:9px;text-align:center}.nav{gap:11px;font-size:8px;justify-content:center}.nav a:nth-child(n+4){display:none}.nav a.active{padding:0 9px}
  .hero{padding:58px 20px 65px}.hero h1{margin-top:36px;font-size:64px;line-height:.86}.hero-copy{font-size:13px}.atelier{padding:0 20px 65px}
  .section-top{margin-bottom:20px}.grid{grid-template-columns:1fr;gap:12px}.media{aspect-ratio:1/1.18}.card-info{min-height:58px}
  .band{padding:38px 20px 42px}.footer{padding:20px;display:block}.footer span{display:block;margin:4px 0}
@@ -123,10 +124,10 @@ button{font:inherit}
 </head>
 <body>
 <header class="header">
-  <a class="brand" href="https://anagonzalezdelgado.framer.wiki/" onclick="goFramer(event, 'https://anagonzálezdelgado.framer.wiki/')">CARLOS GLEZDEL&nbsp; / &nbsp;ATELIER</a>
+  <a class="brand" href="https://anagonzalezdelgado.framer.wiki/" onclick="goFramer(event, 'https://anagonzálezdelgado.framer.wiki/')">CARLOS GLEZDEL&nbsp; / &nbsp;CLO 3D</a>
   <nav class="nav" aria-label="Navegación">
     <a href="https://anagonzalezdelgado.framer.wiki/" onclick="goFramer(event, 'https://anagonzálezdelgado.framer.wiki/')">WORK</a>
-    <a class="active" href="https://anagonzalezdelgado.framer.wiki/atelier" onclick="goFramer(event, '')">ATELIER</a>
+    <a class="active" href="https://anagonzalezdelgado.framer.wiki/atelier" onclick="goFramer(event, '')">CLO 3D</a>
     <a href="https://anagonzalezdelgado.framer.wiki/motion" onclick="goFramer(event, 'https://anagonzálezdelgado.framer.wiki/motion')">MOTION</a>
     <a href="https://anagonzalezdelgado.framer.wiki/about" onclick="goFramer(event, 'https://anagonzálezdelgado.framer.wiki/about')">ABOUT</a>
     <a href="https://anagonzalezdelgado.framer.wiki/contact" onclick="goFramer(event, 'https://anagonzálezdelgado.framer.wiki/contact')">CONTACT</a>
@@ -135,7 +136,7 @@ button{font:inherit}
 
 <main id="top">
   <section class="hero">
-    <div class="eyebrow">03 / DIGITAL ATELIER</div>
+    <div class="eyebrow">03 / CLO 3D</div>
     <h1>Prendas en 3D<span class="italic">.</span></h1>
     <p class="hero-copy">Nueve prendas y un espacio para explorar construcción, textura y movimiento desde cualquier ángulo.</p>
     <div class="hero-meta">
@@ -147,7 +148,7 @@ button{font:inherit}
 
   <section class="atelier" id="atelier">
     <div class="section-top">
-      <div class="section-title">Digital Atelier / 3D Garments</div>
+      <div class="section-title">CLO 3D / 3D Garments</div>
       <div class="section-count" id="count">09 / 09</div>
     </div>
 
@@ -163,7 +164,7 @@ button{font:inherit}
   </section>
 
   <section class="band" id="work">
-    <h2>Digital development<br>as part of the <span style="font-weight:400">atelier.</span></h2>
+    <h2>Digital development<br>as part of the <span style="font-weight:400">CLO 3D.</span></h2>
     <p>Una selección de prendas desarrolladas digitalmente para estudiar silueta, proporción, material, detalle y presentación. Selecciona cualquier pieza para abrir el visor y recorrer sus cuatro vistas.</p>
   </section>
 
@@ -175,7 +176,7 @@ button{font:inherit}
 </main>
 
 <footer class="footer">
-  <span>CARLOS GLEZDEL / DIGITAL ATELIER</span>
+  <span>CARLOS GLEZDEL / CLO 3D</span>
   <span>3D GARMENTS / 2026</span>
   <span>GITHUB PAGES</span>
 </footer>
@@ -218,14 +219,14 @@ function goFramer(event, url){
 }
 const garments = [
  {id:'falda-denim-cafe',title:'Falda denim café',desc:'Desarrollo 3D · estudio de silueta · volumen y proporción',cat:['denim-cafe'],views:['assets/falda-denim-cafe-1.webp','assets/falda-denim-cafe-2.webp','assets/falda-denim-cafe-3.webp','assets/falda-denim-cafe-4.webp']},
- {id:'chaqueta-denim-vermu',title:'Chaqueta denim vermú',desc:'Desarrollo 3D · pieza exterior · construcción y proporción',cat:['vermu'],views:['assets/chaqueta-denim-vermu-1.webp','assets/chaqueta-denim-vermu-2.webp','assets/chaqueta-denim-vermu-3.webp','assets/chaqueta-denim-vermu-4.webp']},
  {id:'conjunto-denim-cafe',title:'Conjunto denim café',desc:'Desarrollo 3D · conjunto · construcción modular',cat:['denim-cafe'],views:['assets/conjunto-denim-cafe-1.webp','assets/conjunto-denim-cafe-2.webp','assets/conjunto-denim-cafe-3.webp','assets/conjunto-denim-cafe-4.webp']},
- {id:'conjunto-denim-vermu',title:'Conjunto denim vermú',desc:'Desarrollo 3D · look completo · piezas coordinadas',cat:['vermu'],views:['assets/conjunto-denim-vermu-1.webp','assets/conjunto-denim-vermu-2.webp','assets/conjunto-denim-vermu-3.webp','assets/conjunto-denim-vermu-4.webp']},
- {id:'falda-denim-champan',title:'Falda denim champán',desc:'Desarrollo 3D · textura · estudio de superficie',cat:['champan'],views:['assets/falda-denim-champan-1.webp','assets/falda-denim-champan-2.webp','assets/falda-denim-champan-3.webp','assets/falda-denim-champan-4.webp']},
- {id:'pantalon-denim',title:'Pantalón denim',desc:'Desarrollo 3D · patronaje · ajuste y volumen',cat:['denim-cafe'],views:['assets/pantalon-denim-1.webp','assets/pantalon-denim-2.webp','assets/pantalon-denim-3.webp','assets/pantalon-denim-4.webp']},
- {id:'top-denim-vino',title:'Top denim vino',desc:'Desarrollo 3D · cuerpo · cuello y detalle',cat:['vino'],views:['assets/top-denim-vino-1.webp','assets/top-denim-vino-2.webp','assets/top-denim-vino-3.webp','assets/top-denim-vino-4.webp']},
  {id:'camisa-denim-cafe',title:'Camisa denim café',desc:'Desarrollo 3D · camisa · detalle constructivo',cat:['denim-cafe'],views:['assets/camisa-denim-cafe-1.webp','assets/camisa-denim-cafe-2.webp','assets/camisa-denim-cafe-3.webp','assets/camisa-denim-cafe-4.webp']},
- {id:'vestido-denim-vermu',title:'Vestido denim vermú',desc:'Desarrollo 3D · construcción de cuerpo · caída',cat:['vermu'],views:['assets/vestido-denim-vermu-1.webp','assets/vestido-denim-vermu-2.webp','assets/vestido-denim-vermu-3.webp','assets/vestido-denim-vermu-4.webp']}
+ {id:'chaqueta-denim-vermu',title:'Chaqueta denim vermú',desc:'Desarrollo 3D · pieza exterior · construcción y proporción',cat:['vermu'],views:['assets/chaqueta-denim-vermu-1.webp','assets/chaqueta-denim-vermu-2.webp','assets/chaqueta-denim-vermu-3.webp','assets/chaqueta-denim-vermu-4.webp']},
+ {id:'conjunto-denim-vermu',title:'Conjunto denim vermú',desc:'Desarrollo 3D · look completo · piezas coordinadas',cat:['vermu'],views:['assets/conjunto-denim-vermu-1.webp','assets/conjunto-denim-vermu-2.webp','assets/conjunto-denim-vermu-3.webp','assets/conjunto-denim-vermu-4.webp']},
+ {id:'vestido-denim-vermu',title:'Vestido denim vermú',desc:'Desarrollo 3D · construcción de cuerpo · caída',cat:['vermu'],views:['assets/vestido-denim-vermu-1.webp','assets/vestido-denim-vermu-2.webp','assets/vestido-denim-vermu-3.webp','assets/vestido-denim-vermu-4.webp']},
+ {id:'top-denim-vino',title:'Top denim vino',desc:'Desarrollo 3D · cuerpo · cuello y detalle',cat:['vino'],views:['assets/top-denim-vino-1.webp','assets/top-denim-vino-2.webp','assets/top-denim-vino-3.webp','assets/top-denim-vino-4.webp']},
+ {id:'falda-denim-champan',title:'Falda denim champán',desc:'Desarrollo 3D · textura · estudio de superficie',cat:['champan'],views:['assets/falda-denim-champan-1.webp','assets/falda-denim-champan-2.webp','assets/falda-denim-champan-3.webp','assets/falda-denim-champan-4.webp']},
+ {id:'pantalon-denim',title:'Pantalón denim',desc:'Desarrollo 3D · patronaje · ajuste y volumen',cat:['denim-cafe'],views:['assets/pantalon-denim-1.webp','assets/pantalon-denim-2.webp','assets/pantalon-denim-3.webp','assets/pantalon-denim-4.webp']}
 ];
 
 const grid=document.getElementById('grid');
