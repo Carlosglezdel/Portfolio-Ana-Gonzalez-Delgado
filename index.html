@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="CLO 3D — Prendas desarrolladas en 3D.">
-<title>CARLOS GLEZDEL / CLO 3D — Prendas en 3D</title>
+<title>Ana González Delgado / CLO 3D — Prendas en 3D</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -120,6 +120,16 @@ button{font:inherit}
  .viewer-image{max-width:90%;max-height:61vh}.arrow{width:36px;height:36px}.arrow.left{left:10px}.arrow.right{right:10px}.hint{font-size:7px;bottom:9px}.viewer-info{max-height:36vh}
 }
 </style>
+<script>
+// Siempre empezar arriba: evita que el navegador restaure el scroll o salte a un ancla
+if('scrollRestoration' in history){history.scrollRestoration='manual'}
+if(location.hash){history.replaceState(null,'',location.pathname+location.search)}
+function goTop(){window.scrollTo({top:0,left:0,behavior:'instant'})}
+goTop();
+addEventListener('DOMContentLoaded',goTop);
+addEventListener('load',function(){goTop();setTimeout(goTop,150)});
+addEventListener('pageshow',goTop);
+</script>
 </head>
 <body>
 <header class="header">
